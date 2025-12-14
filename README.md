@@ -256,14 +256,3 @@ See the `LICENSE` file for more details.
 🧭 **Smart Protection, Smarter Learning — keeping your inbox safe, one link at a time.**
 
 ```
-
----
-
-If you want, I can also:
-- Add **badges** (build, license, Flutter, Firebase)
-- Make it **final-year project / academic ready**
-- Customize it for **Android-only** or **Flutter-only**
-- Write a matching **LICENSE** file
-
-Just tell me 👍
-```
