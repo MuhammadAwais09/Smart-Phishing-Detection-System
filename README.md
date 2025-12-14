@@ -2,7 +2,6 @@
 # 🛡️ Smart Phishing Detection System
 
 **Version:** 1.0  
-**Last Updated:** December 2024  
 **Author:** SolutionWing.io  
 
 Smart Phishing Detection System is a cross-platform mobile application designed to protect users from phishing attacks in real time. It integrates with SMS and Gmail, analyzes URLs and message content using AI/ML models, and alerts users before they interact with malicious links.
@@ -256,15 +255,4 @@ See the `LICENSE` file for more details.
 
 🧭 **Smart Protection, Smarter Learning — keeping your inbox safe, one link at a time.**
 
-```
-
----
-
-If you want, I can also:
-- Add **badges** (build, license, Flutter, Firebase)
-- Make it **final-year project / academic ready**
-- Customize it for **Android-only** or **Flutter-only**
-- Write a matching **LICENSE** file
-
-Just tell me 👍
 ```
