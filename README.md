@@ -1,9 +1,4 @@
-Here’s a **clean, professional, GitHub-ready `README.md`** for your **Smart Phishing Detection System** repository.
-You can copy-paste this directly into `README.md`.
 
----
-
-````markdown
 # 🛡️ Smart Phishing Detection System
 
 **Version:** 1.0  
