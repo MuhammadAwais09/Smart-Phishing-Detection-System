@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "731422501282",
+    "firebase_url": "https://smart-phishing-detection-default-rtdb.firebaseio.com",
+    "project_id": "smart-phishing-detection",
+    "storage_bucket": "smart-phishing-detection.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731422501282:android:31f5aa86d38dd06454eafb",
+        "android_client_info": {
+          "package_name": "com.example.smart_phishing_detection_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSXdAqqNla84oCPwBYKgMjgjwATOgl-QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
