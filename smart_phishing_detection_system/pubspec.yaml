@@ -1,27 +1,45 @@
 name: smart_phishing_detection_system
-description: "A new Flutter project."
-publish_to: 'none'
+description: A Flutter-based phishing-detection app powered by an on-device LLM.
+publish_to: "none"          # This project is not published to pub.dev
 version: 0.1.0
 
 environment:
-  sdk: ^3.10.0-290.4.beta
+  sdk: ">=3.10.0-290.4.beta <4.0.0"
 
+###############################################################################
+#                                DEPENDENCIES                                 #
+###############################################################################
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations: # Keep this if you need localization
+
+  # Internationalisation (already present if you need it)
+  flutter_localizations:
     sdk: flutter
+
+  # State-management
   provider: ^6.1.2
+
+  # Firebase stack you were already using
   firebase_core: ^4.2.1
   firebase_auth: ^6.1.2
   firebase_messaging: ^16.0.4
   firebase_database: ^12.1.0
 
+  # ───────────────────────────────────────────────────────────────────────────
+  # NEW packages for Ollama integration
+  # ───────────────────────────────────────────────────────────────────────────
+  http: ^1.2.0               # Simple REST calls to Ollama /api/chat
+  flutter_dotenv: ^5.1.0     # (Optional) Load .env for secrets / base URL
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  flutter_lints: ^3.0.1
 
+###############################################################################
+#                               FLUTTER CONFIG                                #
+###############################################################################
 flutter:
   uses-material-design: true
 
