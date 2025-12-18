@@ -1,0 +1,91 @@
+─────────────────────────────────────────────────────────────
+Ollama + Phishing-Detector  QUICK START  (Windows / PowerShell)
+─────────────────────────────────────────────────────────────
+
+1. Pull the base Llama model
+-------------------------------------------------------------
+ollama pull llama3.2
+
+
+2. Smoke-test the base model
+-------------------------------------------------------------
+ollama run llama3.2 "Is this URL suspicious: bit.ly/win-prize-now"
+
+
+3. Create workspace for custom models
+-------------------------------------------------------------
+mkdir C:\ollama-models
+cd   C:\ollama-models
+
+
+4. Create the Modelfile  (NO extension!)
+-------------------------------------------------------------
+notepad .\Phishing-Modelfile
+--► Paste the block below, save, exit:
+
+FROM llama3.2
+PARAMETER temperature 0.3
+PARAMETER top_p 0.9
+PARAMETER num_predict 500
+
+SYSTEM """
+You are an expert cybersecurity analyst specializing in phishing detection.
+
+When analyzing content, always provide:
+1. Risk Level: HIGH, MEDIUM, LOW
+2. Confidence: 0-100%
+3. Indicators Found
+4. Recommendation
+5. Education
+"""
+-------------------------------------------------------------
+
+
+5. Build the custom model
+-------------------------------------------------------------
+ollama create phishing-detector -f .\Phishing-Modelfile
+
+
+6. Verify models present
+-------------------------------------------------------------
+ollama list
+# → should show llama3.2 and phishing-detector
+
+
+7. Quick console test of custom model
+-------------------------------------------------------------
+ollama run phishing-detector `
+  "Analyze this SMS: Congratulations! You won $1,000,000! Click here bit.ly/claim-now ..."
+
+
+8. API test (daemon usually already running on 11434)
+-------------------------------------------------------------
+curl http://localhost:11434/api/chat -d ^
+"{
+  \"model\": \"phishing-detector\",
+  \"messages\": [
+    { \"role\": \"user\", \"content\": \"Is this URL safe? arnazon.com/account-verify\" }
+  ],
+  \"stream\": false
+}"
+
+
+9. Useful diagnostics
+-------------------------------------------------------------
+curl http://localhost:11434/api/tags      # list all model tags
+ollama list                               # list local models
+netstat -ano | findstr :11434             # see what’s using the port
+
+# If you MUST restart the service
+# taskkill /PID <pid-from-netstat> /F
+# ollama serve            (only when daemon isn't already running)
+
+
+10. Remember
+-------------------------------------------------------------
+• File must be named exactly  Phishing-Modelfile  (no .txt extension).
+• You usually DON'T need `ollama serve`; the installer runs Ollama
+  as a Windows service that auto-binds to 127.0.0.1:11434 at startup.
+• Update your client code (Flutter, etc.) to use model name 'phishing-detector'.
+
+─────────────────────────────────────────────────────────────
