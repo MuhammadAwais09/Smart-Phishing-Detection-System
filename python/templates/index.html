@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detector AI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify_content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 450px;
+            text-align: center;
+        }
+        h1 { color: #333; margin-bottom: 20px; }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: none;
+            box-sizing: border-box; 
+        }
+        textarea:focus { outline: none; border-color: #667eea; }
+        button {
+            margin-top: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #5a6fd1; }
+        
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none; /* Hidden by default */
+        }
+        .safe {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .phishing {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .confidence { font-size: 0.9em; margin-top: 5px; opacity: 0.8; }
+        .loading { color: #888; display: none; margin-top: 10px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🛡️ Phishing Detector</h1>
+        <p>Paste an email or SMS below to check if it's safe.</p>
+        
+        <textarea id="messageInput" placeholder="Type message here... e.g. 'URGENT! Click here to verify account'"></textarea>
+        
+        <button onclick="checkPhishing()">Analyze Message</button>
+        
+        <div id="loading" class="loading">Analyzing with AI...</div>
+
+        <div id="resultBox" class="result-box">
+            <h2 id="resultText" style="margin: 0;"></h2>
+            <div id="confidenceText" class="confidence"></div>
+        </div>
+    </div>
+
+    <script>
+        async function checkPhishing() {
+            const message = document.getElementById('messageInput').value;
+            const resultBox = document.getElementById('resultBox');
+            const loading = document.getElementById('loading');
+            
+            if (!message.trim()) {
+                alert("Please enter a message!");
+                return;
+            }
+
+            // UI Reset
+            resultBox.style.display = 'none';
+            loading.style.display = 'block';
+
+            try {
+                // Call Python API
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                loading.style.display = 'none';
+                resultBox.style.display = 'block';
+                
+                // Update Text
+                document.getElementById('resultText').innerText = data.result;
+                document.getElementById('confidenceText').innerText = "Confidence Score: " + data.confidence;
+
+                // Update Colors
+                if (data.is_phishing) {
+                    resultBox.className = "result-box phishing";
+                } else {
+                    resultBox.className = "result-box safe";
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                loading.style.display = 'none';
+                alert("Error connecting to server.");
+            }
+        }
+    </script>
+
+</body>
+</html>
