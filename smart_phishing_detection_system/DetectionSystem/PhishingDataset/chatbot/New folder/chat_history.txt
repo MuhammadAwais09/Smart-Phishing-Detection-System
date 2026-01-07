@@ -1,0 +1,12 @@
+[2026-01-08 00:43:58]
+User: what is phishing
+Bot:  To protect your business from phishing attacks, implement a multi-layered security approach including employee training on recognizing phishing attempts, deploying email filtering solutions to block malicious emails, and using two-factor authentication to secure sensitive accounts. Regularly update and patch your systems to fix vulnerabilities that could be exploited by attackers.
+----------------------------------------
+[2026-01-08 00:44:16]
+User: what is email malicious
+Bot:  You should consider using a spam-filtering tool and malware scanning at the email gateway to reduce the number of malicious emails and attachments. Implement Domain-based Message Authentication, Reporting, and Conformance (DMARC) to help reduce spam and phishing activities. Additionally, train users on how to identify phishing and report suspicious emails to IT Security.
+----------------------------------------
+[2026-01-08 00:44:45]
+User: security safety
+Bot:  I recommend using parental controls on gaming consoles and monitoring your child's gameplay. It's also beneficial to educate your child about online safety and the potential risks of interacting with strangers online. Consider visiting resources like 'Gaming: What parents and carers need to know' and 'Online gaming safety tips for parents' for more detailed guidance.
+----------------------------------------
